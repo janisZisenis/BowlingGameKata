@@ -35,13 +35,24 @@ public class BowingGameTest {
     }
 
     @Test
-    public void rolledOneStrikeFollowedByAThreeAndAFourAnd16Gutters__theScoreShouldBe24() {
+    void rolledOneStrikeFollowedByAThreeAndAFourAnd16Gutters__theScoreShouldBe24() {
         rollStrike();
         rollSingle(3);
         rollSingle(4);
         rollMany(16, 0);
 
         assertScoreIs(24);
+    }
+
+    @Test
+    void rollOnlyStrikes__theScoreShouldBe300() {
+        rollOnlyStrikes();
+
+        assertScoreIs(300);
+    }
+
+    private void rollOnlyStrikes() {
+        rollMany(12,10);
     }
 
     private void rollStrike() {
