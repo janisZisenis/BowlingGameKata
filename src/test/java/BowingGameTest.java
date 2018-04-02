@@ -12,31 +12,49 @@ public class BowingGameTest {
     }
 
     @Test
-    void freshInstance__rollOnlyGutters__theScoreShouldBeZero() {
+    void rolledOnlyGutters__theScoreShouldBeZero() {
         roll20Gutters();
 
         assertScoreIs(0);
     }
 
     @Test
-    void freshInstance__rollOnlyOnes__theScoreShouldBeZero() {
+    void rolledOnlyOnes__theScoreShouldBe20() {
         roll20Ones();
 
         assertScoreIs(20);
     }
 
-    private void roll20Ones() {
-        rollMany(1, 20);
+    @Test
+    void rolledOneSpareFollowedByAThreeAnd17Gutters__theScoreShouldBe16() {
+        rollSpare();
+        rollSingle(3);
+        rollMany(17, 0);
+
+        assertScoreIs(16);
     }
 
 
     private void roll20Gutters() {
-        rollMany(0, 20);
+        rollMany(20, 0);
     }
 
-    private void rollMany(int pins, int times) {
+    private void roll20Ones() {
+        rollMany(20, 1);
+    }
+
+    private void rollSpare() {
+        rollSingle(7);
+        rollSingle(3);
+    }
+
+    private void rollMany(int times, int pins) {
         for (int i = 0; i < times; i++)
-            sut.roll(pins);
+            rollSingle(pins);
+    }
+
+    private void rollSingle(int pins) {
+        sut.roll(pins);
     }
 
 
