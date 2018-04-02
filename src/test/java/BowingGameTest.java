@@ -12,15 +12,32 @@ public class BowingGameTest {
     }
 
     @Test
-    public void freshInstance__throw20Gutters__theScoreShouldBeZero() {
-        throwOnlyGutters();
+    void freshInstance__rollOnlyGutters__theScoreShouldBeZero() {
+        roll20Gutters();
 
         assertScoreIs(0);
     }
 
-    private void throwOnlyGutters() {
-        for (int i = 0; i < 20; i++)
-            sut.roll(0);    }
+    @Test
+    void freshInstance__rollOnlyOnes__theScoreShouldBeZero() {
+        roll20Ones();
+
+        assertScoreIs(20);
+    }
+
+    private void roll20Ones() {
+        rollMany(1, 20);
+    }
+
+
+    private void roll20Gutters() {
+        rollMany(0, 20);
+    }
+
+    private void rollMany(int pins, int times) {
+        for (int i = 0; i < times; i++)
+            sut.roll(pins);
+    }
 
 
     private void assertScoreIs(int expected) {
