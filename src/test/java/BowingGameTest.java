@@ -59,7 +59,6 @@ public class BowingGameTest {
         rollSingle(10);
     }
 
-
     private void roll20Gutters() {
         rollMany(20, 0);
     }
